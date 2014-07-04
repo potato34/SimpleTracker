@@ -101,6 +101,7 @@ int main( int argc, const char** argv )
 			capture >> frame;
 
 		imshow("Tracker", frame);
+		imwrite("Tracker.jpg", frame);
 		if (cvWaitKey(20) == 'q')
 			return 1;
 	}
