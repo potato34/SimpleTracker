@@ -70,10 +70,17 @@ void tracking(Mat frame, Mat &model, Rect &trackBox)
 	model = gray(trackBox);
 }
 
-int main(int argc, char * argv[])
+const char* keys =
+{
+	"{1|  | 0 | camera number}"
+};
+
+int main( int argc, const char** argv )
 {
 	VideoCapture capture;
-	capture.open("F:/照片/ObjectTtracking.mpg");
+	CommandLineParser parser(argc, argv, keys);
+	int camNum = parser.get<int>("1");
+	capture.open(camNum);
 	bool fromfile = true;
 	//Init camera
 	if (!capture.isOpened())
@@ -87,18 +94,20 @@ int main(int argc, char * argv[])
 
 	Mat frame, model;
 	capture >> frame;
+
 	while(!gotBB)
 	{
 		if (!fromfile)
 			capture >> frame;
 
 		imshow("Tracker", frame);
+		imwrite("Tracker.jpg", frame);
 		if (cvWaitKey(20) == 'q')
 			return 1;
 	}
+
 	//Remove callback
 	cvSetMouseCallback("Tracker", NULL, NULL ); 
-	
 	Mat gray;
 	cvtColor(frame, gray, CV_RGB2GRAY); 
 	model = gray(box);
