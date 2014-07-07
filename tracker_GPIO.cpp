@@ -72,47 +72,51 @@ const char* keys =
 	"{1|  | 0 | camera number}"
 };
 
+int  setpinmod(pin,){
+
+}
+
 int main( int argc, const char** argv )
 {
 
-    char buffer[128];
+    char pathstring[128];
     FILE *modefile1, *pinfile1,*modefile2, *pinfile2;
     int pin1,pin2;
     cout<<"test2"<<endl;
 	//********************gpio init*********************
 	pin1 = 2;
 	pin2 = 3;
-//********GPIO 12******
-	sprintf(buffer,MODE_FILE_FORMAT,pin1);
-    modefile1 = fopen(buffer,"w");
+//********pin1******
+	sprintf(pathstring,MODE_FILE_FORMAT,pin1);
+    modefile1 = fopen(pathstring,"w");
     cout<<"test1"<<endl;
     if(modefile1 == NULL)
     {
-        fprintf(stderr,"Unable to open mode file: %s\n",buffer);
+        fprintf(stderr,"Unable to open mode file: %s\n",pathstring);
         exit(2);
     }
 
-    sprintf(buffer,PIN_FILE_FORMAT,pin1);
-    pinfile1 = fopen(buffer,"w");
+    sprintf(pathstring,PIN_FILE_FORMAT,pin1);
+    pinfile1 = fopen(pathstring,"w");
     if(pinfile1 == NULL)
     {
-        fprintf(stderr,"Unable to open pin file: %s\n",buffer);
+        fprintf(stderr,"Unable to open pin file: %s\n",pathstring);
         exit(2);
     }
 //********GPIO 2******
-    sprintf(buffer,MODE_FILE_FORMAT,pin2);
-    modefile2 = fopen(buffer,"w");
+    sprintf(pathstring,MODE_FILE_FORMAT,pin2);
+    modefile2 = fopen(pathstring,"w");
     if(modefile2 == NULL)
     {
-        fprintf(stderr,"Unable to open mode file: %s\n",buffer);
+        fprintf(stderr,"Unable to open mode file: %s\n",pathstring);
         exit(2);
     }
 
-    sprintf(buffer,PIN_FILE_FORMAT,pin2);
-    pinfile2 = fopen(buffer,"w");
+    sprintf(pathstring,PIN_FILE_FORMAT,pin2);
+    pinfile2 = fopen(pathstring,"w");
     if(pinfile2 == NULL)
     {
-        fprintf(stderr,"Unable to open pin file: %s\n",buffer);
+        fprintf(stderr,"Unable to open pin file: %s\n",pathstring);
         exit(2);
     }
 
